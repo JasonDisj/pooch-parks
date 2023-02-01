@@ -2,9 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import tw from "twrnc";
 import { Icon } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectDestination } from "../slices/navSlice";
 
 const NavOptions = () => {
   const navigation = useNavigation();
+  const destination = useSelector(selectDestination);
 
   return (
     // <TouchableOpacity style={tw`pb-10 mb-30`}>
@@ -17,6 +20,7 @@ const NavOptions = () => {
       <TouchableOpacity
         style={tw`items-center`}
         onPress={() => navigation.navigate("MapScreen")}
+        disabled={!destination}
       >
         <Icon raised name="paw" type="font-awesome" color="#DAA520" />
       </TouchableOpacity>
