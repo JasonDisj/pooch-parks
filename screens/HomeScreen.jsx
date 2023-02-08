@@ -1,57 +1,44 @@
-import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import tw from "twrnc";
-import * as SplashScreen from "expo-splash-screen";
-import { useFonts } from "expo-font";
-import { useCallback } from "react";
 import NavOptions from "../components/NavOptions";
+import Header from "../components/Header";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
 import { setOrigin, setDestination } from "../slices/navSlice";
-
-SplashScreen.preventAutoHideAsync();
+import ExpandableBtn from "../components/ExpandableBtn";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
-  const [fontsLoaded] = useFonts({
-    "BungeeShade-Regular": require("../assets/fonts/BungeeShade-Regular.ttf"),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
-    <SafeAreaView style={tw`bg-white h-full`}>
-      <View onLayout={onLayoutRootView} style={[tw`p-5`, styles.container]}>
-        <View style={tw`flex-row items-center`}>
-          <Image
-            source={require("../assets/images/dog-logo.jpg")}
-            style={{ width: 100, height: 100, resizeMode: "contain" }}
-          />
-
-          <Text style={[tw`text-yellow-600 text-center mt-2`, styles.text]}>
-            PoochParks
-          </Text>
+    <SafeAreaView style={tw`h-full`}>
+      <View style={tw`flex-1 p-5`}>
+        <View style={tw`items-center`}>
+          <Header />
         </View>
+
         <GooglePlacesAutocomplete
+          placeholder="Search Neighbourhood..."
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
-          placeholder="Search..."
           styles={{
             textInput: {
               height: 38,
               color: "#5d5d5d",
               fontSize: 18,
             },
-            container: { flex: 0 },
+            container: {
+              flex: 0,
+              borderRadius: 10,
+              alignItems: "center",
+            },
+            predefinedPlacesDescription: {
+              color: "#1faadb",
+            },
+          }}
+          GooglePlacesSearchQuery={{
+            rankby: "distance",
           }}
           minLength={2}
           enablePoweredByContainer={false}
@@ -62,17 +49,20 @@ const HomeScreen = () => {
           }}
           onPress={(data, details = null) => {
             dispatch(
-              setOrigin({
+              setDestination({
                 location: details.geometry.location,
                 description: data.description,
               })
             );
 
-            dispatch(setDestination(null));
+            dispatch(setOrigin(null));
           }}
           fetchDetails={true}
         />
+
         <NavOptions />
+
+        <ExpandableBtn />
       </View>
     </SafeAreaView>
   );
@@ -80,20 +70,4 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-  },
-  text: {
-    fontFamily: "BungeeShade-Regular",
-    fontSize: 31,
-  },
-  // search: {
-  //   flex: 0,
-  //   fontSize: 18,
-  //   width: 50,
-  // },
-});
+const styles = StyleSheet.create({});
