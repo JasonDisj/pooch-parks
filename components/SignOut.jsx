@@ -16,7 +16,7 @@ const SignOut = () => {
   };
 
   return (
-    <View style={tw`justify-center items-center pt-20`}>
+    <View style={tw`justify-center items-center pt-10 pb-4`}>
       {/* <Text>{auth.currentUser?.email}</Text> */}
       <TouchableOpacity onPress={handleSignOut} style={styles.btn}>
         <Text style={styles.btnText}>Sign Out</Text>
@@ -30,8 +30,8 @@ export default SignOut;
 const styles = StyleSheet.create({
   btn: {
     backgroundColor: "#DAA520",
-    width: "30%",
-    padding: 10,
+    width: "28%",
+    padding: 12,
     borderRadius: 10,
     alignItems: "center",
   },
