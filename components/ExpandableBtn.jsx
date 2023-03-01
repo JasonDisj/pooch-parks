@@ -7,8 +7,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 
 const ExpandableBtn = () => {
-  const [icon_fav] = useState(new Animated.Value(12));
   const [icon_logout] = useState(new Animated.Value(12));
+  const [icon_fav] = useState(new Animated.Value(12));
 
   const [pop, setPop] = useState(false);
 
@@ -16,13 +16,13 @@ const ExpandableBtn = () => {
 
   const popActivated = () => {
     setPop(true);
-    Animated.timing(icon_fav, {
-      toValue: 192,
+    Animated.timing(icon_logout, {
+      toValue: 194,
       duration: 500,
       useNativeDriver: false,
     }).start();
-    Animated.timing(icon_logout, {
-      toValue: 102,
+    Animated.timing(icon_fav, {
+      toValue: 104,
       duration: 500,
       useNativeDriver: false,
     }).start();
@@ -30,12 +30,12 @@ const ExpandableBtn = () => {
 
   const popDeactivated = () => {
     setPop(false);
-    Animated.timing(icon_fav, {
+    Animated.timing(icon_logout, {
       toValue: 12,
       duration: 500,
       useNativeDriver: false,
     }).start();
-    Animated.timing(icon_logout, {
+    Animated.timing(icon_fav, {
       toValue: 12,
       duration: 500,
       useNativeDriver: false,
@@ -56,6 +56,12 @@ const ExpandableBtn = () => {
 
   return (
     <View style={tw`flex-1`}>
+      <Animated.View style={[styles.expandableBtn, { bottom: icon_logout }]}>
+        <TouchableOpacity onPress={handleSignOut}>
+          <Icon raised name="logout" type="UIImage" size={25} color="#DAA520" />
+        </TouchableOpacity>
+      </Animated.View>
+
       <Animated.View style={[styles.expandableBtn, { bottom: icon_fav }]}>
         <TouchableOpacity onPress={handleFav}>
           <Icon
@@ -68,12 +74,6 @@ const ExpandableBtn = () => {
         </TouchableOpacity>
       </Animated.View>
 
-      <Animated.View style={[styles.expandableBtn, { bottom: icon_logout }]}>
-        <TouchableOpacity onPress={handleSignOut}>
-          <Icon raised name="logout" type="UIImage" size={25} color="#DAA520" />
-        </TouchableOpacity>
-      </Animated.View>
-
       <TouchableOpacity
         style={styles.expandableBtn}
         onPress={() => {
@@ -81,13 +81,7 @@ const ExpandableBtn = () => {
         }}
       >
         <Animated.View>
-          <Icon
-            raised
-            name="expand-less"
-            type="UIImage"
-            size={25}
-            color="#DAA520"
-          />
+          <Icon raised name="menu" type="UIImage" size={25} color="#DAA520" />
         </Animated.View>
       </TouchableOpacity>
     </View>
