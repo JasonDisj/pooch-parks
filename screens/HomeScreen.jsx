@@ -32,8 +32,6 @@ const HomeScreen = () => {
               flex: 0,
               borderRadius: 10,
               alignItems: "center",
-              borderColor: "rgba(0, 0, 0, 0.2)",
-              borderWidth: 1,
             },
           }}
           GooglePlacesSearchQuery={{
