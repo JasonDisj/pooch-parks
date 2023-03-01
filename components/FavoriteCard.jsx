@@ -1,8 +1,20 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import { Icon } from "@rneui/themed";
+import { useDispatch } from "react-redux";
+import { setDestination } from "../slices/navSlice";
 
-const FavoriteCard = ({ id, name, address, rating, deletePark }) => {
+const FavoriteCard = ({
+  id,
+  name,
+  address,
+  rating,
+  location,
+  deletePark,
+  toggleModalVisibility,
+}) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <View style={styles.favBox}>
@@ -22,6 +34,28 @@ const FavoriteCard = ({ id, name, address, rating, deletePark }) => {
                 <Text style={tw`text-lg mb-1`}>{rating}</Text>
               </>
             ) : null}
+          </View>
+
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                toggleModalVisibility();
+                dispatch(
+                  setDestination({
+                    location: location,
+                    description: address,
+                  })
+                );
+              }}
+            >
+              <Icon
+                name="near-me"
+                type="UIImage"
+                size={22}
+                color="#DAA520"
+                style={tw`pr-5`}
+              />
+            </TouchableOpacity>
           </View>
 
           <View>
