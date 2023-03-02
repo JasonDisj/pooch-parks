@@ -46,7 +46,7 @@ const DirectionMap = () => {
         .then(data => {
           dispatch(setTravelTime(data.rows[0].elements[0]));
         })
-        .catch(err => console.error(err));
+        .catch(error => console.error(error));
     };
 
     getTravelTime();
@@ -55,7 +55,7 @@ const DirectionMap = () => {
   return (
     <MapView
       ref={mapRef}
-      style={tw`flex-1`}
+      style={tw`flex-1 -mt-10 z-0`}
       mapType="mutedStandard"
       initialRegion={{
         latitude: origin.location.lat,
