@@ -24,8 +24,8 @@ import FavoriteCard from "../components/FavoriteCard";
 import BtnOnFavorites from "../components/BtnOnFavorites";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
-import { useDispatch } from "react-redux";
-import { setOrigin } from "../slices/navSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectOrigin, setOrigin } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
@@ -36,6 +36,7 @@ const FavListScreen = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const origin = useSelector(selectOrigin);
 
   const getFavorites = async () => {
     try {
@@ -149,6 +150,7 @@ const FavListScreen = () => {
                 setModalVisible(!isModalVisible);
                 navigation.navigate("DirectionScreen");
               }}
+              disabled={!origin}
             >
               <Text style={styles.btnText}>CONFIRM</Text>
             </TouchableOpacity>
