@@ -1,6 +1,6 @@
 ## Pooch Parks
 
-Inspired by my furry friend Mantou (meaning steamed bun in Chinese), I created this locator app Pooch Parks to help dog owners search for dog parks and save their favourites.
+Inspired by my beloved furry friend Mantou (meaning steamed bun in Chinese), I created this locator app Pooch Parks to help dog owners search for dog parks, save their preferred ones, obtain directions from their current location to the selected dog park, and access information on the distance between two locations, as well as an estimated travel time.
 
 ## Demo Video
 
