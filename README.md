@@ -4,4 +4,4 @@ Inspired by my furry friend Mantou (meaning steamed bun in Chinese), I created t
 
 ## Demo Video
 
-https://user-images.githubusercontent.com/104804325/221384229-bd426c94-f1d0-471a-957f-8cf73c95b2c3.mp4
+https://user-images.githubusercontent.com/104804325/222569203-8d01f088-559e-40fd-8920-10b5fbcb50ff.mp4
